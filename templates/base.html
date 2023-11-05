@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+<head>
+<meta charset="UTF-8" />
+    <title>Apadok - Masuk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='datatables.bundle.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins.bundle.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.bundle.css') }}" />
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="bg-body">
+	<!--begin::Main-->
+	<!--begin::Root-->
+	<div class="d-flex flex-column flex-root">
+		<!--begin::Authentication - Sign-in -->
+		<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(/static/images/14.png)">
+			<!--begin::Content-->
+			<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+				<!--begin::Logo-->
+				<a href="" class="mb-12">
+					<img alt="Logo" src="/static/images/apadok.png" class="h-80px" />
+				</a>
+				<!--end::Logo-->
+				<!--begin::Wrapper-->
+				<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+					<!--begin::Form-->
+					<form class="form w-100" id="kt_sign_in_form">
+						<!--begin::Heading-->
+						<div class="text-center mb-10">
+							<!--begin::Title-->
+							<h1 class="text-dark mb-3">Masuk</h1>
+							<!--end::Title-->
+						</div>
+						<!--begin::Heading-->
+						<!--begin::Input group-->
+						<div class="fv-row mb-10">
+							<!--begin::Label-->
+							<label class="form-label fs-6 fw-bolder text-dark">Username</label>
+							<!--end::Label-->
+							<!--begin::Input-->
+							<input class="form-control form-control-lg form-control-solid" type="text" name="username" autocomplete="off" />
+							<!--end::Input-->
+						</div>
+						<!--end::Input group-->
+						<!--begin::Input group-->
+						<div class="fv-row mb-10">
+							<!--begin::Wrapper-->
+							<div class="d-flex flex-stack mb-2">
+								<!--begin::Label-->
+								<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+								<!--end::Label-->
+							</div>
+							<!--end::Wrapper-->
+							<!--begin::Input-->
+							<input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
+							<!--end::Input-->
+						</div>
+						<!--end::Input group-->
+						<!--begin::Actions-->
+						<div class="text-center">
+							<!--begin::Submit button-->
+							<button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
+								<span class="indicator-label">Lanjutkan</span>
+								<span class="indicator-progress">Harap tunggu...
+								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+							</button>
+							<!--end::Submit button-->
+						</div>
+						<!--end::Actions-->
+					</form>
+					<!--end::Form-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Content-->
+			<!--begin::Footer-->
+			<div class="d-flex flex-center flex-column-auto p-10">
+			</div>
+			<!--end::Footer-->
+		</div>
+		<!--end::Authentication - Sign-in-->
+	</div>
+	<!--end::Root-->
+
+	<!--begin::Chatbot-->
+	<div class="container">
+		<div class="chatbox">
+			<div class="chatbox__support">
+				<div class="chatbox__header">
+					<div class="chatbox__image--header">
+						<img src="/static/images/chatbot.png" alt="image" />
+					</div>
+					<div class="chatbox__content--header">
+						<h4 class="chatbox__heading--header">TanyaDok</h4>
+						<p class="chatbox__description--header">Halo. Selamat datang di ApaDok. Apa yang bisa kami bantu?</p>
+					</div>
+				</div>
+				<div class="chatbox__messages">
+					<div></div>
+				</div>
+				<div class="chatbox__footer">
+					<input type="text" placeholder="Masukan pesan..." />
+					<button class="chatbox__send--footer send__button">Kirim</button>
+				</div>
+				
+				<!-- Dropdown pilihan pertanyaan -->
+				<div class="chatbox__dropdown">
+					<select class="chatbox__dropdown-select" id="questionDropdown">
+						<option value="" disabled selected>Pilih pertanyaan</option>
+						<option value="Apa itu diabetes?">Apa itu diabetes?</option>
+						<option value="Apa saja gejala dan dampak diabetes?">Apa saja gejala dan dampak diabetes?</option>
+						<option value="Cara mencegah diabetes.">Cara mencegah diabetes.</option>
+						<option value="Pengobatan penyakit diabetes.">Pengobatan penyakit diabetes.</option>
+						<option value="Apa itu stroke?">Apa itu stroke?</option>
+						<option value="Apa saja gejala dan dampak stroke?">Apa saja gejala dan dampak stroke?</option>
+						<option value="Cara mencegah stroke.">Cara mencegah stroke.</option>
+						<option value="Pengobatan penyakit stroke.">Pengobatan penyakit stroke.</option>
+						<option value="Apa itu kardiovaskular?">Apa itu kardiovaskular?</option>
+						<option value="Apa saja gejala dan dampak kardiovaskular?">Apa saja gejala dan dampak kardiovaskular?</option>
+						<option value="Cara mencegah kardiovaskular.">Cara mencegah kardiovaskular.</option>
+						<option value="Pengobatan penyakit kardiovaskular.">Pengobatan penyakit kardiovaskular.</option>
+						<!-- Tambahkan pilihan pertanyaan lainnya di sini -->
+					</select>
+				</div>
+			</div>
+		</div>
+    <div class="chatbox__button">
+      <button>
+        <img src="/static/images/chatbox-icon.svg" />
+      </button>
+    </div>
+	</div>
+	<!--end::Chatbot-->
+
+  <script>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  </script>
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='app.js') }}"
+  ></script>
+  
+</body>
+<!--end::Body-->
+</html>
