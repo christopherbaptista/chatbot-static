@@ -53,58 +53,58 @@ def get_response(msg):
         else:
             return "Maaf, saya tidak mengerti..."
 
-graph = nx.DiGraph()
+# graph = nx.DiGraph()
 
-graph.add_node("Start")
-graph.add_node("User input")
-graph.add_node("Model")
-graph.add_node("Probabilitas")
-graph.add_node("Rule-based")
-graph.add_node("Response")
-graph.add_node("End")
+# graph.add_node("Start")
+# graph.add_node("User input")
+# graph.add_node("Model")
+# graph.add_node("Probabilitas")
+# graph.add_node("Rule-based")
+# graph.add_node("Response")
+# graph.add_node("End")
 
-graph.add_edge("Start", "User input")
-graph.add_edge("User input", "Model")
-graph.add_edge("Model", "Probabilitas")
-graph.add_edge("Probabilitas", "Rule-based")
-graph.add_edge("Rule-based", "Response")
-graph.add_edge("Response", "End")
+# graph.add_edge("Start", "User input")
+# graph.add_edge("User input", "Model")
+# graph.add_edge("Model", "Probabilitas")
+# graph.add_edge("Probabilitas", "Rule-based")
+# graph.add_edge("Rule-based", "Response")
+# graph.add_edge("Response", "End")
 
-# Add edge labels
-nx.set_edge_attributes(graph, {
-    ("Start", "User input"): {"label": "Masukan pengguna"},
-    ("User input", "Model"): {"label": "Proses model"},
-    ("Model", "Probabilitas"): {"label": "Hitung probabilitas"},
-    ("Probabilitas", "Rule-based"): {"label": "Bandingkan probabilitas"},
-    ("Rule-based", "Response"): {"label": {
-        "Ya": "Tampilkan respons",
-        "Tidak": "Tidak tampilkan respons"
-    }},
-    ("Response", "End"): {"label": "Selesai"}
-})
+# # Add edge labels
+# nx.set_edge_attributes(graph, {
+#     ("Start", "User input"): {"label": "Masukan pengguna"},
+#     ("User input", "Model"): {"label": "Proses model"},
+#     ("Model", "Probabilitas"): {"label": "Hitung probabilitas"},
+#     ("Probabilitas", "Rule-based"): {"label": "Bandingkan probabilitas"},
+#     ("Rule-based", "Response"): {"label": {
+#         "Ya": "Tampilkan respons",
+#         "Tidak": "Tidak tampilkan respons"
+#     }},
+#     ("Response", "End"): {"label": "Selesai"}
+# })
 
-# Add nodes for intents
-for intent in intents['intents']:
-    graph.add_node(intent['tag'])
-    graph.add_edge("Rule-based", intent['tag'], attr={"label": "Periksa intent"})
+# # Add nodes for intents
+# for intent in intents['intents']:
+#     graph.add_node(intent['tag'])
+#     graph.add_edge("Rule-based", intent['tag'], attr={"label": "Periksa intent"})
 
-# Add edges for intent checks
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
-        graph.add_edge(intent['tag'], pattern, attr={"label": "Match pattern"})
+# # Add edges for intent checks
+# for intent in intents['intents']:
+#     for pattern in intent['patterns']:
+#         graph.add_edge(intent['tag'], pattern, attr={"label": "Match pattern"})
 
-# Make tree
-for node in graph.nodes:
-    if node != "Start":
-        for child in graph.neighbors(node):
-            graph.add_edge(node, child)
+# # Make tree
+# for node in graph.nodes:
+#     if node != "Start":
+#         for child in graph.neighbors(node):
+#             graph.add_edge(node, child)
 
-# Set layout
-pos = nx.drawing.nx_agraph.graphviz_layout(graph, prog="dot")
+# # Set layout
+# pos = nx.drawing.nx_agraph.graphviz_layout(graph, prog="dot")
 
-# Draw graph
-nx.draw(graph, pos=pos, with_labels=True, arrows=True)
-plt.show()
+# # Draw graph
+# nx.draw(graph, pos=pos, with_labels=True, arrows=True)
+# plt.show()
 
 if __name__ == "__main__":
     print("Halo selamat datang di TanyaDok! Tanyakan apa saja (type 'quit' to exit)")
