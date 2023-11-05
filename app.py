@@ -17,10 +17,13 @@ def index():
 def predict():
     text = request.get_json().get("message")
     
-    # TODO: check if text is valid
-    response = get_response(text)
-    message = {"answer": response}
-    return jsonify(message)
+    if text is not None and text.strip() != "":
+        response = get_response(text)
+        message = {"answer": response}
+        return jsonify(message)
+    else:
+        return jsonify({"error": "Invalid input. 'pesan' tidak boleh kosong."}), 400
+
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)
